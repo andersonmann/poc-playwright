@@ -1,36 +1,37 @@
 class LoginPage {
     constructor(page) {
-       
-       // this.errorMessage = '.error-message-container';
+      this.page = page; // Instância do Playwright Page
+  
+      // Seletores
+      this.usernameInput = '#user-name';
+      this.passwordInput = '#password';
+      this.loginButton = '#login-button';
+      this.errorMessage = '[data-test="error"]';
     }
-
+  
+    // Método para navegar até a página
     async navigate() {
-        await this.page.goto('https://www.saucedemo.com/', { waitUntil: 'domcontentloaded' });
+      await this.page.goto('https://www.saucedemo.com/');
     }
-
+  
+    // Método para realizar o login
     async login(username, password) {
-
-        await page.getByPlaceholder('username').fill(username)
-
-        // await page.locator('[data-test="username"]').fill(username);
-        await page.locator('[data-test="password"]').fill(password);
-        await page.locator('[data-test="login-button"]').click();
+      await this.page.fill(this.usernameInput, username);
+      await this.page.fill(this.passwordInput, password);
+      await this.page.click(this.loginButton);
     }
-
+  
+    // Método para obter mensagens de erro
     async getErrorMessage() {
-        return await this.page.textContent(this.errorMessage);
+      return this.page.textContent(this.errorMessage);
     }
-}
-
-module.exports = { LoginPage };
-
-import { test, expect } from '@playwright/test';
-
-test('test', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
-    await page.locator('[data-test="username"]').click();
-    await page.locator('[data-test="username"]').fill('standard_user');
-    await page.locator('[data-test="password"]').click();
-    await page.locator('[data-test="password"]').fill('secret_sauce');
-    await page.locator('[data-test="login-button"]').click();
-});
+  
+    // Método para verificar se o login foi bem-sucedido
+    async isLoggedIn() {
+      // Aguarda até que a URL da página de inventário seja carregada
+      await this.page.waitForURL('https://www.saucedemo.com/inventory.html');
+      return this.page.url() === 'https://www.saucedemo.com/inventory.html';
+    }
+  }
+  
+  module.exports = LoginPage;
