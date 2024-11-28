@@ -1,20 +1,20 @@
 class LoginPage {
     constructor(page) {
-        this.page = page;
-        this.usernameField = '#user-name';
-        this.passwordField = '#password';
-        this.loginButton = '#login-button';
-        this.errorMessage = '.error-message-container';
+       
+       // this.errorMessage = '.error-message-container';
     }
 
     async navigate() {
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto('https://www.saucedemo.com/', { waitUntil: 'domcontentloaded' });
     }
 
     async login(username, password) {
-        await this.page.fill(this.usernameField, username);
-        await this.page.fill(this.passwordField, password);
-        await this.page.click(this.loginButton);
+
+        await page.getByPlaceholder('username').fill(username)
+
+        // await page.locator('[data-test="username"]').fill(username);
+        await page.locator('[data-test="password"]').fill(password);
+        await page.locator('[data-test="login-button"]').click();
     }
 
     async getErrorMessage() {
@@ -23,3 +23,14 @@ class LoginPage {
 }
 
 module.exports = { LoginPage };
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+    await page.goto('https://www.saucedemo.com/');
+    await page.locator('[data-test="username"]').click();
+    await page.locator('[data-test="username"]').fill('standard_user');
+    await page.locator('[data-test="password"]').click();
+    await page.locator('[data-test="password"]').fill('secret_sauce');
+    await page.locator('[data-test="login-button"]').click();
+});
