@@ -27,6 +27,5 @@ class InventoryPage {
   async accessCart() {
     await this.page.locator('[data-test="shopping-cart-link"]').click();
   }
-
 }
 module.exports = InventoryPage;
