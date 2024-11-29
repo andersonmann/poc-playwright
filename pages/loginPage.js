@@ -41,5 +41,4 @@ class LoginPage {
         return this.page.url() === 'https://www.saucedemo.com/inventory.html';
     }
 }
-
 module.exports = LoginPage;
