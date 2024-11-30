@@ -1,8 +1,10 @@
 const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
+
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
+
   use: {
-    // channel: 'chrome',
     headless: false, // Para depuração, exibe o navegador.
     baseURL: 'https://www.saucedemo.com/',
     screenshot: 'only-on-failure', // Tira screenshots somente em falhas.
