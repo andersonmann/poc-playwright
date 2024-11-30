@@ -1,20 +1,12 @@
 class LoginPage {
     constructor(page) {
-        this.page = page; // Instância do Playwright Page
-
-        // Seletores
+        this.page = page;
         this.usernameInput = '#user-name';
         this.passwordInput = '#password';
         this.loginButton = '#login-button';
         this.errorMessage = '[data-test="error"]';
     }
-    /**
-     * Método para navegar até a página
-     */
-    async navigate() {
-        await this.page.goto('https://www.saucedemo.com/');
-    }
-
+ß
     /**
      * Realiza o login na aplicação com as credenciais fornecidas.
      * 
@@ -23,7 +15,7 @@ class LoginPage {
      * @returns {Promise<void>} Não retorna valor, mas realiza a navegação após o login.
      */
     async login(username, password) {
-        this.navigate();
+        await this.page.goto('https://www.saucedemo.com/');
         await this.page.fill(this.usernameInput, username);
         await this.page.fill(this.passwordInput, password);
         await this.page.click(this.loginButton);
