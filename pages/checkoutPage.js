@@ -1,4 +1,5 @@
 class CheckoutPage {
+
     constructor(page) {
         this.page = page;
     }
@@ -14,28 +15,31 @@ class CheckoutPage {
     /**
      * Preencher campo ultimo nome
      */
-    async fillFirstName(lastName) {
-        await this.page.locator('[data-test="lasttName"]').fill(lastName);
+    async fillLastName(lastName) {
+        await this.page.locator('[data-test="lastName"]').fill(lastName);
     }
 
     /**
      * Preencher campo CEP
      */
-    async fillFirstName(postalCode) {
+    async fillZipCode(postalCode) {
         await this.page.locator('[data-test="postalCode"]').fill(postalCode);
     }
 
     /**
      * Clica no botão continuar
      */
-    async fillFirstName(postalCode) {
+    async clickButtonContinue(postalCode) {
         await this.page.locator('[data-test="continue"]').click();
     }
 
     /**
      * Clica no botão terminar
      */
-    async fillFirstName(postalCode) {
+    async clickButtonFinish(postalCode) {
         await this.page.locator('[data-test="finish"]').click();
     }
+
 }
+
+module.exports = CheckoutPage;
