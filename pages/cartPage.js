@@ -1,6 +1,8 @@
 class CartPage {
     constructor(page) {
         this.page = page;
+        this.continueShoppingButton = page.getByTestId('continue-shopping');
+        this.checkoutButton = page.getByTestId('checkout');
     }
 
     /**
@@ -11,21 +13,21 @@ class CartPage {
      * @param {string} itemSlug - Slug do item a ser removido.
      */
     async removeItem(itemSlug) {
-        await this.page.locator(`[data-test="remove-${itemSlug}"]`).click();
+        await this.page.getByTestId(`remove-${itemSlug}`).click();
     }
 
     /**
      * Continuar comprando
      */
     async continueShooping() {
-        await this.page.locator('[data-test="continue-shopping"]').click();
+        await this.continueShoppingButton.click();
     }
 
     /**
      * Checkout
      */
     async accessCheckout() {
-        await this.page.locator('[data-test="checkout"]').click();
+        await this.checkoutButton.click();
     }
 }
 
