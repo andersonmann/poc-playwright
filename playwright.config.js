@@ -12,8 +12,10 @@ module.exports = defineConfig({
         headless: process.env.CI ? true : false, // Em CI executa headless; localmente exibe o navegador.
         baseURL: 'https://www.saucedemo.com/',
         storageState: 'playwright/.auth/user.json', // Reutiliza estado de autenticação em todos os testes.
+        testIdAttribute: 'data-test', // Permite usar page.getByTestId() com o atributo data-test.
         screenshot: 'only-on-failure', // Tira screenshots somente em falhas.
         video: 'retain-on-failure', // Grava vídeos apenas em falhas.
+        trace: 'on-first-retry', // Grava trace na primeira re-execução de um teste falho.
     },
 
     projects: [

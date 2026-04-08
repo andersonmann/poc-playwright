@@ -1,10 +1,10 @@
 class LoginPage {
     constructor(page) {
         this.page = page;
-        this.usernameInput = '#user-name';
-        this.passwordInput = '#password';
-        this.loginButton = '#login-button';
-        this.errorMessage = '[data-test="error"]';
+        this.usernameInput = page.locator('#user-name');
+        this.passwordInput = page.locator('#password');
+        this.loginButton = page.locator('#login-button');
+        this.errorMessage = page.getByTestId('error');
     }
 
     /**
@@ -16,14 +16,14 @@ class LoginPage {
      */
     async login(username, password) {
         await this.page.goto('/');
-        await this.page.fill(this.usernameInput, username);
-        await this.page.fill(this.passwordInput, password);
-        await this.page.click(this.loginButton);
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
     }
 
     // Método para obter mensagens de erro
     async getErrorMessage() {
-        return this.page.textContent(this.errorMessage);
+        return this.errorMessage.textContent();
     }
 
     // Método para verificar se o login foi bem-sucedido

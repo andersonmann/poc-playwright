@@ -1,6 +1,8 @@
 class InventoryPage {
     constructor(page) {
         this.page = page;
+        this.addToCartButton = page.getByTestId('add-to-cart');
+        this.shoppingCartLink = page.getByTestId('shopping-cart-link');
     }
 
     /**
@@ -9,23 +11,21 @@ class InventoryPage {
      * @param {string} itemName - Nome do item a ser clicado.
      */
     async clickOnItemByName(itemName) {
-        const itemSelector = `[data-test="inventory-item-name"]:text("${itemName}")`;
-        await this.page.waitForSelector(itemSelector);
-        await this.page.click(itemSelector);
+        await this.page.getByTestId('inventory-item-name').filter({ hasText: itemName }).click();
     }
 
     /**
      * Adiciona o item no carrinho
      */
     async addItemToCart() {
-        await this.page.locator('[data-test="add-to-cart"]').click();
+        await this.addToCartButton.click();
     }
 
     /**
      * Acessa o carrinho a partir da tela de detalhes do item
      */
     async accessCart() {
-        await this.page.locator('[data-test="shopping-cart-link"]').click();
+        await this.shoppingCartLink.click();
     }
 }
 module.exports = InventoryPage;

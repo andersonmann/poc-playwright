@@ -1,41 +1,46 @@
 class CheckoutPage {
     constructor(page) {
         this.page = page;
+        this.firstNameInput = page.getByTestId('firstName');
+        this.lastNameInput = page.getByTestId('lastName');
+        this.zipCodeInput = page.getByTestId('postalCode');
+        this.continueButton = page.getByTestId('continue');
+        this.finishButton = page.getByTestId('finish');
     }
 
     /**
      * Preencher campo primeiro nome
      */
     async fillFirstName(firstName) {
-        await this.page.locator('[data-test="firstName"]').fill(firstName);
+        await this.firstNameInput.fill(firstName);
     }
 
     /**
      * Preencher campo ultimo nome
      */
     async fillLastName(lastName) {
-        await this.page.locator('[data-test="lastName"]').fill(lastName);
+        await this.lastNameInput.fill(lastName);
     }
 
     /**
      * Preencher campo CEP
      */
     async fillZipCode(postalCode) {
-        await this.page.locator('[data-test="postalCode"]').fill(postalCode);
+        await this.zipCodeInput.fill(postalCode);
     }
 
     /**
      * Clica no botão continuar
      */
     async clickButtonContinue() {
-        await this.page.locator('[data-test="continue"]').click();
+        await this.continueButton.click();
     }
 
     /**
      * Clica no botão terminar
      */
     async clickButtonFinish() {
-        await this.page.locator('[data-test="finish"]').click();
+        await this.finishButton.click();
     }
 }
 
