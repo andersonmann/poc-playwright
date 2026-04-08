@@ -7,6 +7,11 @@ on:
         branches: [main, master]
     workflow_dispatch:
 
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -48,3 +53,23 @@ jobs:
                   name: playwright-report
                   path: playwright-report/
                   retention-days: 30
+
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              if: always()
+              with:
+                  path: playwright-report/
+
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        if: always() && github.event_name != 'pull_request'
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
