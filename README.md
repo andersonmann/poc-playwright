@@ -75,14 +75,14 @@ Os testes são executados automaticamente via GitHub Actions nos seguintes event
 
 ## Etapas da pipeline
 
-| Etapa | Descrição |
-|---|---|
-| Lint | Valida o código com ESLint |
-| Check formatting | Valida a formatação com Prettier |
+| Etapa                       | Descrição                        |
+| --------------------------- | -------------------------------- |
+| Lint                        | Valida o código com ESLint       |
+| Check formatting            | Valida a formatação com Prettier |
 | Install Playwright browsers | Baixa os navegadores necessários |
-| Run Playwright tests | Executa os testes nos 3 browsers |
-| Upload Playwright report | Salva o relatório como artefato |
-| Deploy to GitHub Pages | Publica o relatório online |
+| Run Playwright tests        | Executa os testes nos 3 browsers |
+| Upload Playwright report    | Salva o relatório como artefato  |
+| Deploy to GitHub Pages      | Publica o relatório online       |
 
 ## Acessando o relatório publicado
 
