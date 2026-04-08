@@ -1,9 +1,7 @@
 const { expect } = require('@playwright/test');
 const { test } = require('./fixtures');
-const { Faker, pt_BR } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/pt_BR');
 const { POSTAL_CODES } = require('./data/checkout.data');
-
-const faker = new Faker({ locale: [pt_BR] });
 
 test.describe('Realiza a compra de um produto com sucesso', () => {
     test('Loga do site, seleciona um item, adiciona no carrinho, digita dados usuario e finaliza compra', async ({
