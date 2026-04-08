@@ -1,15 +1,28 @@
 {
-  "name": "poc-playwright",
-  "version": "1.0.0",
-  "description": "Este código foi desenvolvido como uma POC de automação web utilizando playwright com javascript. Estas instruções fornecerão uma cópia do projeto para execução e alteração em sua máquina local para fins de desenvolvimento e teste. Consulte as instruções abaixo para saber como baixar e executar o projeto.",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "npx playwright test"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "poc-playwright",
+    "version": "1.0.0",
+    "description": "Este código foi desenvolvido como uma POC de automação web utilizando playwright com javascript. Estas instruções fornecerão uma cópia do projeto para execução e alteração em sua máquina local para fins de desenvolvimento e teste. Consulte as instruções abaixo para saber como baixar e executar o projeto.",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "npx playwright test",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@faker-js/faker": "^10.4.0",
+        "@playwright/test": "^1.59.1",
+        "dotenv": "^17.4.1",
+        "eslint": "^10.2.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-playwright": "^2.10.1",
+        "prettier": "^3.8.1"
+    }
 }
