@@ -31,7 +31,7 @@ npx playwright install
 
 # Variáveis de ambiente
 
-Os testes utilizam credenciais e configurações definidas via variáveis de ambiente. Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+Os testes utilizam credenciais e configurações definidas via variáveis de ambiente, armazenadas em um arquivo `.env` na raiz do projeto:
 
 ```
 TEST_USERNAME=standard_user
@@ -41,15 +41,13 @@ BASE_URL=https://www.saucedemo.com
 
 > **Atenção:** o arquivo `.env` está no `.gitignore` e **não deve ser commitado**.
 
-## Configurando Secrets no GitHub Actions
+## Secrets no GitHub Actions
 
-Para executar os testes via pipeline, configure os seguintes Secrets no repositório:
+As mesmas variáveis estão configuradas como Secrets no repositório para uso na pipeline:
 
-1. Acesse **Settings > Secrets and variables > Actions** no repositório do GitHub
-2. Clique em **New repository secret** e adicione:
-    - `TEST_USERNAME` — nome de usuário de teste
-    - `TEST_PASSWORD` — senha de teste
-    - `BASE_URL` — URL base da aplicação (ex: `https://www.saucedemo.com`)
+- `TEST_USERNAME` — nome de usuário de teste
+- `TEST_PASSWORD` — senha de teste
+- `BASE_URL` — URL base da aplicação
 
 # Executando os testes
 
@@ -66,3 +64,38 @@ Após a conclusão do seu teste, um arquivo HTML será gerado, o que mostra um r
 ```sh
 npx playwright show-report
 ```
+
+# Pipeline de CI
+
+Os testes são executados automaticamente via GitHub Actions nos seguintes eventos:
+
+- **Push** para as branches `main` ou `master`
+- **Pull Request** aberto contra `main` ou `master`
+- **Execução manual** via aba **Actions → Playwright Tests → Run workflow**
+
+## Etapas da pipeline
+
+| Etapa | Descrição |
+|---|---|
+| Lint | Valida o código com ESLint |
+| Check formatting | Valida a formatação com Prettier |
+| Install Playwright browsers | Baixa os navegadores necessários |
+| Run Playwright tests | Executa os testes nos 3 browsers |
+| Upload Playwright report | Salva o relatório como artefato |
+| Deploy to GitHub Pages | Publica o relatório online |
+
+## Acessando o relatório publicado
+
+Após cada execução em `main`/`master`, o relatório HTML é publicado automaticamente no GitHub Pages e pode ser acessado em:
+
+```
+https://andersonmann.github.io/poc-playwright/
+```
+
+## Artefato da pipeline
+
+O relatório também fica disponível como artefato por 30 dias em cada execução:
+
+1. Acesse a aba **Actions** no repositório
+2. Clique na execução desejada
+3. Na seção **Artifacts**, baixe o arquivo `playwright-report`
