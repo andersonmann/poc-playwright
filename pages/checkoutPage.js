@@ -1,9 +1,7 @@
 class CheckoutPage {
-
     constructor(page) {
         this.page = page;
     }
-
 
     /**
      * Preencher campo primeiro nome
@@ -29,17 +27,16 @@ class CheckoutPage {
     /**
      * Clica no botão continuar
      */
-    async clickButtonContinue(postalCode) {
+    async clickButtonContinue() {
         await this.page.locator('[data-test="continue"]').click();
     }
 
     /**
      * Clica no botão terminar
      */
-    async clickButtonFinish(postalCode) {
+    async clickButtonFinish() {
         await this.page.locator('[data-test="finish"]').click();
     }
-
 }
 
 module.exports = CheckoutPage;

@@ -6,16 +6,16 @@ class LoginPage {
         this.loginButton = '#login-button';
         this.errorMessage = '[data-test="error"]';
     }
-ß
+
     /**
      * Realiza o login na aplicação com as credenciais fornecidas.
-     * 
+     *
      * @param {string} username - O nome de usuário a ser usado no login.
      * @param {string} password - A senha correspondente ao nome de usuário.
      * @returns {Promise<void>} Não retorna valor, mas realiza a navegação após o login.
      */
     async login(username, password) {
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto('/');
         await this.page.fill(this.usernameInput, username);
         await this.page.fill(this.passwordInput, password);
         await this.page.click(this.loginButton);
@@ -29,8 +29,8 @@ class LoginPage {
     // Método para verificar se o login foi bem-sucedido
     async isLoggedIn() {
         // Aguarda até que a URL da página de inventário seja carregada
-        await this.page.waitForURL('https://www.saucedemo.com/inventory.html');
-        return this.page.url() === 'https://www.saucedemo.com/inventory.html';
+        await this.page.waitForURL('**/inventory.html');
+        return this.page.url().includes('/inventory.html');
     }
 }
 module.exports = LoginPage;
