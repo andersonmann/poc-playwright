@@ -134,3 +134,4 @@ dist
 
 #pastas e arquivos
 /test-results
+/playwright-report
